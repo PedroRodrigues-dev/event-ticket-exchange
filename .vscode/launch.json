@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "EventTicketExchange",
+      "request": "launch",
+      "mainClass": "com.pedro.event_ticket_exchange.EventTicketExchangeApplication",
+      "projectName": "event-ticket-exchange",
+      "preLaunchTask": "Gradle Build"
+    }
+  ]
+}
