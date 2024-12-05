@@ -55,3 +55,21 @@
 - Para auxiliar na usabilidade criei uma request collection no insomnia.
 - Inclui um diagrama do banco de dados da aplicação e um diagrama do planejamento do gitflow para o versionamento e distribuição
   de pacotes do projeto.
+
+### Etapas concluidas
+
+- (Concluido) Projete um esquema normalizado e crie um script MySQL DDL correspondente.
+- (Concluido) Prepare uma v1 migração versionada Flyway que encapsula o script DDL de criação de esquema.
+- (Concluido) Preparar uma migração com versão v2 Flyway que preencha o banco de dados das exportações de dados fornecidas no diretório de dados.
+- (Pendente) Crie um Gradle build que invoca Flyway e executa suas migrações.
+- (Concluido) Adicione o wrapper Gradle e envie-o para o repositório de origem.
+- (Concluido) Realize a confecção das entidades que representem as tabelas geradas na etapa anterior
+- (Concluido) Use [JPA] para a criação de repositorios das tabelas/entidades
+- (Pendente) Para facilitar a revisão, envie o código-fonte gerado para a fonte repositório.
+- (Concluido) Exponha dois endpoints de API RESTful somente leitura para cada uma das entidades que você criado nas Partes 1 e 2.
+- (Concluido) Escreva um ou mais testes jUnit que exercitem e validem seu serviço método(s).
+- (Pendente) Implementar um endpoint de serviço da web que receba três solicitações parâmetros como entrada:
+  data de contexto (obrigatório)
+  ID da categoria do evento (opcional)
+  cidade do evento (opcional)
+- (Pendente) Implemente um ou mais testes jUnit para exercitar e validar seu implementação.
