@@ -83,6 +83,8 @@ Para simplificação, preparei um arquivo `launch.json` para usuários de **VSCo
 
 - Devido ao grande volume de dados, percebi a importância de uma boa implementação de paginação. Por isso, implementei uma paginação baseada no `Pageable`. Não implementei buscas não paginadas, pois, para as regras de negócio que planejei, isso não faria sentido.
 
+- Para que a documentação se torna-se uso simples, moldei manualmente a aparência do `Pageable` para o swagger exibindo apenas dois campo `page` e `size`.
+
 ---
 
 ### Testes

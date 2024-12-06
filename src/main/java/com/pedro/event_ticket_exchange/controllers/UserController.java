@@ -16,6 +16,7 @@ import com.pedro.event_ticket_exchange.services.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
@@ -26,13 +27,16 @@ public class UserController {
         @Autowired
         private UserService service;
 
-        @Operation(summary = "Get all users", description = "Retrieve a paginated list of all users.")
+        @Operation(summary = "Get all users", description = "Retrieve a paginated list of all users.", parameters = {
+                        @Parameter(name = "page", description = "Page number (0-based index)", in = ParameterIn.QUERY, example = "0"),
+                        @Parameter(name = "size", description = "Number of items per page", in = ParameterIn.QUERY, example = "10")
+        })
         @ApiResponses(value = {
                         @ApiResponse(responseCode = "200", description = "Successfully retrieved the users list"),
                         @ApiResponse(responseCode = "400", description = "Invalid pagination parameters")
         })
         @GetMapping
-        public Page<User> getAllUsers(Pageable pageable) {
+        public Page<User> getAllUsers(@Parameter(hidden = true) Pageable pageable) {
                 return service.getAll(pageable);
         }
 
