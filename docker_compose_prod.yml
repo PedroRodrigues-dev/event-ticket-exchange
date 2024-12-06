@@ -1,0 +1,44 @@
+name: event-ticket-exchange-prod
+
+services:
+  event-ticket-exchange:
+    image: event-ticket-exchange:1.0.0-LTS
+    container_name: event-ticket-exchange
+    environment:
+      - DB_URL=jdbc:mysql://mysql:3306/event_ticket_exchange?createDatabaseIfNotExist=true
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    restart: always
+    networks:
+      - event_network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-event-ticket-exchange
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: event_ticket_exchange
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./data:/var/lib/mysql-files/data
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - event_network
+
+networks:
+  event_network:
+    driver: bridge
+
+volumes:
+  mysql_data:

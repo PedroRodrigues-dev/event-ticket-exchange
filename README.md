@@ -32,7 +32,10 @@ Para garantir que o sistema se mantenha executando nas versões adequadas, foi i
 
 Ao executar o comando `docker-compose up -d`, o MySQL 8.0 será configurado para rodar corretamente e com a criação automática da base de dados necessária para as migrações.
 
-Recomenda-se utilizar este container, pois para que a aplicação execute as migrações de dados corretamente, é necessário que os dados da pasta `data` no teste estejam em `/var/lib/mysql-files/data`. O mapeamento e configuração dessa pasta estão inclusos no `docker-compose`.
+Recomenda-se utilizar este container, pois para que a aplicação execute as migrações de dados corretamente, é necessário que os dados da pasta `src/main/resources/db/migration/data` estejam em `/var/lib/mysql-files/data`. O mapeamento e configuração dessa pasta estão inclusos no `docker-compose`.
+
+Em modo de desenvolvimento optei pelo `network_mode: "host"` devido a simplicidade maior de se trabalhar em um projeto na mesma rede da maquina nativa,
+já em produção criei uma network própria para o MySQL e para o Backend.
 
 ---
 
@@ -91,6 +94,17 @@ Para simplificação, preparei um arquivo `launch.json` para usuários de **VSCo
 - Para facilitar a usabilidade, criei uma coleção de requisições no Insomnia e implementei o Swagger na aplicação, disponível na rota `/swagger-ui/index.html`.
 
 ---
+
+### Deploy
+
+- Utilize o arquivo `docker_compose_prod.yml`.
+- Utilizei para prepar um deploy para esta aplicação as ferramentas docker e docker compose, ao executar o `buildImage.sh` ele fará todo o processo de
+  compilação e preparação do pacote, após isso ele irá gerar uma imagem docker com base no nome de pacote presente em `settings.gradle` e da versão presente
+  em `build.gradle`, para a imagem de base utilizei a apresentada nas instruções `amazoncorretto:17-alpine-jdk`, segui para o padrão de versões o similar ao
+  utilizado para o controle de versão do kernel Linux, tendo pacotes LTS e SNAPSHOTS.
+- Incluí o MySQL para que a aplicação rode normalmente, para utilizar de forma correta faça uma cópia da `data` para o mesmo diretório do compose e após isso
+  o mysql conseguirá encontrar os arquivos necessários, talvez seja visível quedas no backend nos primeiros segundos de execução, isso ocorre devido a ordem
+  de execução, mesmo com o `depends_on` o MySQL ainda demora um tempo para executar, então até sua completa execução o backend se mantém em modo de restart.
 
 ### Git Workflow
 
