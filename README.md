@@ -80,7 +80,18 @@ Para simplificação, preparei um arquivo `launch.json` para usuários de **VSCo
 ### Documentação
 
 - Para facilitar a usabilidade, criei uma coleção de requisições no Insomnia e implementei o Swagger na aplicação, disponível na rota `/swagger-ui/index.html`.
-- Incluí também um diagrama do banco de dados da aplicação e um diagrama do planejamento do GitFlow para o versionamento e distribuição de pacotes do projeto.
+
+---
+
+### Git Workflow
+
+<img src="gitflow.jpg" width="800px" />
+
+---
+
+### Diagrama de banco de dados
+
+<img src="diagrama_de_banco_de_dados.jpg" width="800px" />
 
 ---
 
