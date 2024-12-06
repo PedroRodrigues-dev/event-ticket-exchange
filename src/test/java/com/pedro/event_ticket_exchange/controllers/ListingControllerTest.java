@@ -82,6 +82,26 @@ class ListingControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    @Test
+    void testGetListingsToPromotion() {
+        java.util.Date contextDate = java.sql.Date.valueOf("2024-12-31");
+        Long categoryId = 1L;
+        String eventCity = "City A";
+
+        List<Long> mockListingIds = List.of(101L, 102L, 103L);
+
+        when(listingService.getListingsToPromotion(contextDate, categoryId,
+                eventCity)).thenReturn(mockListingIds);
+
+        List<Long> result = listingController.getListingsToPromotion(contextDate,
+                categoryId, eventCity);
+
+        assertEquals(3, result.size());
+        assertEquals(101L, result.get(0));
+        assertEquals(102L, result.get(1));
+        assertEquals(103L, result.get(2));
+    }
+
     private Listing createListing(Integer id, Integer numberOfTickets, BigDecimal pricePerTicket,
             BigDecimal totalPrice) {
         Listing listing = new Listing();
