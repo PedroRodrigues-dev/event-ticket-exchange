@@ -1,5 +1,7 @@
 package com.pedro.event_ticket_exchange.entities;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -35,7 +37,7 @@ public class Event {
     private String eventName;
 
     @Column(name = "event_start_time", nullable = false)
-    private java.sql.Time eventStartTime;
+    private LocalDateTime eventStartTime;
 
     public Integer getEventId() {
         return eventId;
@@ -77,11 +79,11 @@ public class Event {
         this.eventName = eventName;
     }
 
-    public java.sql.Time getEventStartTime() {
+    public LocalDateTime getEventStartTime() {
         return eventStartTime;
     }
 
-    public void setEventStartTime(java.sql.Time eventStartTime) {
+    public void setEventStartTime(LocalDateTime eventStartTime) {
         this.eventStartTime = eventStartTime;
     }
 }

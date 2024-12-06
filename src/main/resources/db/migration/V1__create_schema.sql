@@ -56,7 +56,7 @@ CREATE TABLE Events (
     category_id INT NOT NULL,
     date_id INT NOT NULL,
     event_name VARCHAR(150) NOT NULL,
-    event_start_time TIME NOT NULL,
+    event_start_time DATETIME NOT NULL,
     FOREIGN KEY (venue_id) REFERENCES Venues(venue_id),
     FOREIGN KEY (category_id) REFERENCES Categories(category_id),
     FOREIGN KEY (date_id) REFERENCES Dates(id)
