@@ -36,6 +36,15 @@ Recomenda-se utilizar este container, pois para que a aplicação execute as mig
 
 ---
 
+### Motivo de Optar por este Método de População no Banco de Dados
+
+Existem algumas maneiras para se popular o banco a partir de um arquivo txt, eu poderia por meio de uma script python reescrever meu arquivo `.txt` para `.sql`
+ou poderia utilizar uma própria classe do java fazendo conexão direta ao JDBC Template ou utilizar o Driver Manager para fazer a conexão de forma direta usando
+a url, usuário e senha do banco, mas em ambos os casos não atenderia o requisito de se utilizar um arquivo `V2` do flyway e devido a este método ser o melhor
+que encontrei em minhas pesquisas optei por ele.
+
+---
+
 ### Execução
 
 Para simplificação, preparei um arquivo `launch.json` para usuários de **VSCode**, permitindo que os pacotes da aplicação sejam compilados e executados pelo debugger do VSCode, facilitando o processo de debug. Caso não deseje usar dessa forma, a aplicação pode ser executada com o seguinte comando:
