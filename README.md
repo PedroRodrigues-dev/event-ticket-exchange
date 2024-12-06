@@ -40,8 +40,8 @@ Recomenda-se utilizar este container, pois para que a aplicação execute as mig
 
 Existem algumas maneiras para se popular o banco a partir de um arquivo txt, eu poderia por meio de uma script python reescrever meu arquivo `.txt` para `.sql`
 ou poderia utilizar uma própria classe do java fazendo conexão direta ao JDBC Template ou utilizar o Driver Manager para fazer a conexão de forma direta usando
-a url, usuário e senha do banco, mas em ambos os casos não atenderia o requisito de se utilizar um arquivo `V2` do flyway e devido a este método ser o melhor
-que encontrei em minhas pesquisas optei por ele.
+a url, usuário e senha do banco, mas em ambos os casos não atenderia o requisito de se utilizar um arquivo `V2` do flyway além de, no caso dos métodos em java,
+apresentaria uma performance significativamente menor que o atual, devido a isto optei por ele.
 
 ---
 
