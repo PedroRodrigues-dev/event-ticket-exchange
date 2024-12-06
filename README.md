@@ -2,6 +2,9 @@
 
 Este documento visa garantir que todos os passos do processo de desenvolvimento estejam bem documentados para facilitar a manutenção e a continuidade do projeto.
 
+Algumas das automações para o desenvolvimento desse sistema foram projetadas para linux, então em caso de uso em windows alguns desses processos podem conter
+falhas, entre esses processos estão os de migração manual de database e geração de containers.
+
 ---
 
 ### Inicialização do Projeto
@@ -45,6 +48,18 @@ Existem algumas maneiras para se popular o banco a partir de um arquivo txt, eu 
 ou poderia utilizar uma própria classe do java fazendo conexão direta ao JDBC Template ou utilizar o Driver Manager para fazer a conexão de forma direta usando
 a url, usuário e senha do banco, mas em ambos os casos não atenderia o requisito de se utilizar um arquivo `V2` do flyway além de, no caso dos métodos em java,
 apresentaria uma performance significativamente menor que o atual, devido a isto optei por ele.
+
+---
+
+### Flyway
+
+Para a parte da script de migração passei por um problema, o Flyway como biblioteca do próprio java estava me retornando o seguinte erro
+`No database found to handle` após um longo período de estudos não consegui resolve-lo então para contornar a situação fiz duas implementações,
+mantive o Flyway em modo de migração automática e mantive comentado no arquivo `application.properties` a seguinte instrução `# spring.flyway.enabled=false`
+caso precise desativar a migração automática apenas a descomente, já a parte de migração via comando criei um comando chamado `./gradlew migrate`, ele aciona
+a própria CLI do Flyway e por meio dela as migrações são realizadas normalmente, quanto as informações para a migração, elas são passadas por variáveis de
+ambiente, para executar este comando é necessário ter instalado a CLI do Flyway, siga este tutorial da [Red Gate](https://documentation.red-gate.com/fd/command-line-184127404.html)
+que este comando funcionará normalmente.
 
 ---
 
@@ -123,7 +138,7 @@ Para simplificação, preparei um arquivo `launch.json` para usuários de **VSCo
 - **(Concluído)** Projetei um esquema normalizado e criei um script MySQL DDL correspondente.
 - **(Concluído)** Preparei a migração `v1` versionada com Flyway, encapsulando o script DDL de criação de esquema.
 - **(Concluído)** Preparei uma migração `v2` com Flyway, que preenche o banco de dados com os dados exportados fornecidos no diretório de dados.
-- **(Pendente)** Criação de um build do Gradle que invoca o Flyway e executa suas migrações.
+- **(Concluído)** Criação de um build do Gradle que invoca o Flyway e executa suas migrações.
 - **(Concluído)** Adicionei o wrapper Gradle e o enviei para o repositório de origem.
 - **(Concluído)** Realizei a criação das entidades que representam as tabelas geradas na etapa anterior.
 - **(Concluído)** Usei `JPA` para criar os repositórios das tabelas/entidades.
