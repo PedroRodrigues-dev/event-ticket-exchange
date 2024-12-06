@@ -50,6 +50,11 @@
 - Para garantir que neste teste tenha sido abrangido vários cenários, os primeiros testes realizei após o desenvolvimento, após
   a primeira versão pronta apliquei o TDD para a inclusão da paginação nos controllers.
 
+### Promoções
+
+- As promoções foram desenvolvidas em Listings baseando-se em eventos na data atual ou em datas sequentes que ainda não tenham
+  ventido todos os seus ingreços disponíveis, limitado em 10 como o solicitado.
+
 ### Documentação
 
 - Para auxiliar na usabilidade criei uma request collection no insomnia.
@@ -65,11 +70,11 @@
 - (Concluido) Adicione o wrapper Gradle e envie-o para o repositório de origem.
 - (Concluido) Realize a confecção das entidades que representem as tabelas geradas na etapa anterior
 - (Concluido) Use [JPA] para a criação de repositorios das tabelas/entidades
-- (Pendente) Para facilitar a revisão, envie o código-fonte gerado para a fonte repositório.
+- (Concluido) Para facilitar a revisão, envie o código-fonte gerado para a fonte repositório.
 - (Concluido) Exponha dois endpoints de API RESTful somente leitura para cada uma das entidades que você criado nas Partes 1 e 2.
 - (Concluido) Escreva um ou mais testes jUnit que exercitem e validem seu serviço método(s).
-- (Pendente) Implementar um endpoint de serviço da web que receba três solicitações parâmetros como entrada:
+- (Concluido) Implementar um endpoint de serviço da web que receba três solicitações parâmetros como entrada:
   data de contexto (obrigatório)
   ID da categoria do evento (opcional)
   cidade do evento (opcional)
-- (Pendente) Implemente um ou mais testes jUnit para exercitar e validar seu implementação.
+- (Concluido) Implemente um ou mais testes jUnit para exercitar e validar seu implementação.
