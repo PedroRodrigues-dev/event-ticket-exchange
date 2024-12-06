@@ -31,9 +31,9 @@ dependencies {
 }
 
 flyway {
-    url = 'jdbc:mysql://localhost:3306/event_ticket_exchange'
-    user = 'root'
-    password = 'root'
+    url = project.findProperty('flyway.url') ?: System.getenv('DB_URL') ?: 'jdbc:mysql://127.0.0.1:3306/event_ticket_exchange'
+    user = project.findProperty('flyway.user') ?: System.getenv('DB_USER') ?: 'root'
+    password = project.findProperty('flyway.password') ?: System.getenv('DB_PASSWORD') ?: 'root'
 }
 
 tasks.named('test') {
