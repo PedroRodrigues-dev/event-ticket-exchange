@@ -7,7 +7,13 @@
       "request": "launch",
       "mainClass": "com.pedro.event_ticket_exchange.EventTicketExchangeApplication",
       "projectName": "event-ticket-exchange",
-      "preLaunchTask": "Gradle Build"
+      "preLaunchTask": "Gradle Build",
+      "env": {
+        "DB_URL": "jdbc:mysql://localhost:3306/event_ticket_exchange?createDatabaseIfNotExist=true",
+        "DB_USERNAME": "root",
+        "DB_PASSWORD": "root",
+        "ALLOWED_ORIGIN": "*"
+      }
     }
   ]
 }
