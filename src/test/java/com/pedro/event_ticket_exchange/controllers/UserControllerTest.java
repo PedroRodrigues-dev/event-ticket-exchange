@@ -61,7 +61,9 @@ class UserControllerTest {
         ResponseEntity<User> response = userController.getUserById(1);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("user1", response.getBody().getUsername());
+        User body = Optional.ofNullable(response.getBody())
+                .orElseThrow(() -> new AssertionError("Response body should not be null"));
+        assertEquals("user1", body.getUsername());
     }
 
     @Test

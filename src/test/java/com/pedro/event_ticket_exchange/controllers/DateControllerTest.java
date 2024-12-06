@@ -62,8 +62,10 @@ class DateControllerTest {
         ResponseEntity<Date> response = dateController.getDateById(1);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(2024, response.getBody().getYear());
-        assertEquals(false, response.getBody().getHolidayFlag());
+        Date body = Optional.ofNullable(response.getBody())
+                .orElseThrow(() -> new AssertionError("Response body should not be null"));
+        assertEquals(2024, body.getYear());
+        assertEquals(false, body.getHolidayFlag());
     }
 
     @Test

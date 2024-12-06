@@ -68,8 +68,10 @@ class EventControllerTest {
         ResponseEntity<Event> response = eventController.getEventById(1);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Concert A", response.getBody().getEventName());
-        assertEquals(Time.valueOf("20:00:00"), response.getBody().getEventStartTime());
+        Event body = Optional.ofNullable(response.getBody())
+                .orElseThrow(() -> new AssertionError("Response body should not be null"));
+        assertEquals("Concert A", body.getEventName());
+        assertEquals(Time.valueOf("20:00:00"), body.getEventStartTime());
     }
 
     @Test

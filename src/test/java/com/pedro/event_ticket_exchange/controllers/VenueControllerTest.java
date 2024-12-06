@@ -64,7 +64,9 @@ class VenueControllerTest {
         ResponseEntity<Venue> response = venueController.getVenueById(1);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Stadium A", response.getBody().getVenueName());
+        Venue body = Optional.ofNullable(response.getBody())
+                .orElseThrow(() -> new AssertionError("Response body should not be null"));
+        assertEquals("Stadium A", body.getVenueName());
     }
 
     @Test

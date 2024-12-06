@@ -62,8 +62,10 @@ class CategoryControllerTest {
         ResponseEntity<Category> response = categoryController.getCategoryById(1);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Category 1", response.getBody().getCategoryName());
-        assertEquals("Group A", response.getBody().getCategoryGroup());
+        Category body = Optional.ofNullable(response.getBody())
+                .orElseThrow(() -> new AssertionError("Response body should not be null"));
+        assertEquals("Category 1", body.getCategoryName());
+        assertEquals("Group A", body.getCategoryGroup());
     }
 
     @Test

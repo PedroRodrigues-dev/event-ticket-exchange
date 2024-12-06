@@ -69,8 +69,10 @@ class ListingControllerTest {
         ResponseEntity<Listing> response = listingController.getListingById(1);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(10, response.getBody().getNumberOfTickets());
-        assertEquals(BigDecimal.valueOf(500.00), response.getBody().getTotalPrice());
+        Listing body = Optional.ofNullable(response.getBody())
+                .orElseThrow(() -> new AssertionError("Response body should not be null"));
+        assertEquals(10, body.getNumberOfTickets());
+        assertEquals(BigDecimal.valueOf(500.00), body.getTotalPrice());
     }
 
     @Test

@@ -70,8 +70,10 @@ class SaleControllerTest {
         ResponseEntity<Sale> response = saleController.getSaleById(1);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(3, response.getBody().getQuantitySold());
-        assertEquals(BigDecimal.valueOf(75.00), response.getBody().getPricePaid());
+        Sale body = Optional.ofNullable(response.getBody())
+                .orElseThrow(() -> new AssertionError("Response body should not be null"));
+        assertEquals(3, body.getQuantitySold());
+        assertEquals(BigDecimal.valueOf(75.00), body.getPricePaid());
     }
 
     @Test
