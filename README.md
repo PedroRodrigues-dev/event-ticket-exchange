@@ -100,7 +100,7 @@ Para simplificação, preparei um arquivo `launch.json` para usuários de **VSCo
 
 ### Variáveis de Ambiente
 
-- Para garantir flexibilidade e facilidade de configuração, implementei 3 variáveis de ambiente: `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`.
+- Para garantir flexibilidade e facilidade de configuração, implementei 4 variáveis de ambiente: `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `ALLOWED_ORIGIN`.
 
 ---
 
@@ -109,6 +109,18 @@ Para simplificação, preparei um arquivo `launch.json` para usuários de **VSCo
 - Para facilitar a usabilidade, criei uma coleção de requisições no Insomnia e implementei o Swagger na aplicação, disponível na rota `/swagger-ui/index.html`.
 
 ---
+
+### Banner
+
+- Incluí um banner para melhor adequação ao projeto.
+
+---
+
+### CORS
+
+- Para evitar problemas com políticas de acesso já deixei preparado toda a configuração de CORS da aplicação para suportar a conexão com o Frontend por meio
+  da variável de ambiente `ALLOWED_ORIGIN`, caso não definida o padrão será qualquer origem, além disso incluí uma configuração no `META-INF` para evitar que
+  a propriedade que criei para isso cause qualquer alerta.
 
 ### Deploy
 
@@ -122,6 +134,8 @@ Para simplificação, preparei um arquivo `launch.json` para usuários de **VSCo
   de execução, mesmo com o `depends_on` o MySQL ainda demora um tempo para executar, então até sua completa execução o backend se mantém em modo de restart.
 
 ### Git Workflow
+
+- Este projeto apresenta este modelo de trabalho
 
 <img src="gitflow.jpg" width="800px" />
 
