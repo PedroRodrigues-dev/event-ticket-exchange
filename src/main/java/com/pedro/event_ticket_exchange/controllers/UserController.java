@@ -14,23 +14,40 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pedro.event_ticket_exchange.entities.User;
 import com.pedro.event_ticket_exchange.services.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
 
-    @Autowired
-    private UserService service;
+        @Autowired
+        private UserService service;
 
-    @GetMapping
-    public Page<User> getAllUsers(Pageable pageable) {
-        return service.getAll(pageable);
-    }
+        @Operation(summary = "Get all users", description = "Retrieve a paginated list of all users.")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Successfully retrieved the users list"),
+                        @ApiResponse(responseCode = "400", description = "Invalid pagination parameters")
+        })
+        @GetMapping
+        public Page<User> getAllUsers(Pageable pageable) {
+                return service.getAll(pageable);
+        }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) {
-        Optional<User> user = service.getById(id);
+        @Operation(summary = "Get user by ID", description = "Retrieve a specific user by its ID.")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Successfully retrieved the user"),
+                        @ApiResponse(responseCode = "404", description = "User not found with the given ID")
+        })
+        @GetMapping("/{id}")
+        public ResponseEntity<User> getUserById(
+                        @Parameter(description = "ID of the user to be retrieved", required = true) @PathVariable("id") Integer id) {
 
-        return user.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
+                Optional<User> user = service.getById(id);
+
+                return user.map(ResponseEntity::ok)
+                                .orElseGet(() -> ResponseEntity.notFound().build());
+        }
 }

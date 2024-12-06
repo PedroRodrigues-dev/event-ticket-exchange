@@ -57,7 +57,7 @@
 
 ### Documentação
 
-- Para auxiliar na usabilidade criei uma request collection no insomnia.
+- Para auxiliar na usabilidade criei uma request collection no insomnia e inplementei um swagger na aplicação para a rota /swagger-ui/index.html.
 - Inclui um diagrama do banco de dados da aplicação e um diagrama do planejamento do gitflow para o versionamento e distribuição
   de pacotes do projeto.
 
